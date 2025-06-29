@@ -1,11 +1,11 @@
-import { handleDate } from '@/hooks/HandleDate';
 import { Post } from '@/types/Post';
-import { CircleUserRound, Dot, MessageSquare, ThumbsUp } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
+import Profile from './Profile';
 import Tags from './Tags';
-import { Devider } from './devider';
+import Interactive from './Interactive';
 
 interface ListCardProps {
   post: Post;
@@ -49,27 +49,9 @@ const ListCard: React.FC<ListCardProps> = ({
           </p>
         </div>
         {/* author name */}
-        <div className='flex items-center '>
-          <div className='flex gap-8 lg:gap-12 items-center'>
-            <CircleUserRound className='size-30' />
-            <div> {post.author.name}</div>
-          </div>
-          <Dot />
-          <div className='text-xs text-neutral-600'>
-            {handleDate(post.createdAt)}
-          </div>
-        </div>
+        <Profile post={post} />
         {/* interactive  */}
-        <div className=' flex gap-12'>
-          <div className='flex gap-6'>
-            <ThumbsUp />
-            <div>{post.likes}</div>
-          </div>
-          <div className='flex gap-6'>
-            <MessageSquare />
-            <div>{post.comments}</div>
-          </div>
-        </div>
+        <Interactive post={post} />
       </div>
     </Link>
   );
