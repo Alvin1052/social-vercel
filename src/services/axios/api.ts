@@ -26,4 +26,9 @@ export const API = {
 
     return res.data;
   },
+  getUser: async (id: number) => {
+    const res = await AxiosInstance().get(`/users/${id}/comments`);
+
+    return res.data;
+  },
 };
