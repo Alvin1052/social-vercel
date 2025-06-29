@@ -1,7 +1,7 @@
 import { handleDate } from '@/hooks/HandleDate';
 import { API } from '@/services/axios/api';
 import { Post } from '@/types/Post';
-import { Dot, UserCircle2, UserCircleIcon } from 'lucide-react';
+import { CircleUserIcon, Dot, UserCircle2, UserCircleIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
@@ -32,9 +32,15 @@ const Profile: React.FC<ProfileProps> = ({ post }) => {
 
   if (!user)
     return (
-      <div className='flex gap-8 lg:gap-12 items-center'>
-        <UserCircleIcon />
-        <div> {post.author.name}</div>
+      <div className='flex items-center '>
+        <div className='flex gap-8 lg:gap-12 items-center'>
+          <CircleUserIcon />
+          <div> {post.author.name}</div>
+        </div>
+        <Dot />
+        <div className='text-xs text-neutral-600'>
+          {handleDate(post.createdAt)}
+        </div>
       </div>
     );
   return (
