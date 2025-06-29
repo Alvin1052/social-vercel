@@ -5,6 +5,7 @@ import { Page } from '@/types/Post';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ListCard from '../ui/ListCard';
+import { Devider } from '../ui/devider';
 
 type PageNav = 'next' | 'prev';
 const Recommend = () => {
@@ -55,7 +56,8 @@ const Recommend = () => {
       <b className='text-[28px] font-bold'>Recommended For You</b>
       {post.data.map((post) => (
         <div key={post.id} className='flex flex-col gap-12 w-full'>
-          <ListCard post={post} isSidebar={false} />
+          <ListCard post={post} isSidebar={false} isPicture={true} />
+          <Devider />
         </div>
       ))}
 

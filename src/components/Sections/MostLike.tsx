@@ -2,7 +2,6 @@
 
 import { API } from '@/services/axios/api';
 import { Page } from '@/types/Post';
-import { MessageSquare, ThumbsUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ListCard from '../ui/ListCard';
 
@@ -30,7 +29,7 @@ const MostLike = () => {
       <b className='text-[28px] font-bold'>Most Liked</b>
       {post.data.slice(0, 3).map((post) => (
         <div key={post.id} className='flex flex-col gap-12 w-full'>
-          <ListCard post={post} isSidebar={true} />
+          <ListCard post={post} isSidebar={true} isPicture={false} />
         </div>
       ))}
     </div>

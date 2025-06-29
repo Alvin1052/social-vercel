@@ -7,11 +7,12 @@ export interface Post {
   createdAt: string;
   likes: number;
   comments: number;
-  author: {
-    id: number;
-    name: string;
-    email: string;
-  };
+  author: Author;
+}
+export interface Author {
+  id: number;
+  name: string;
+  email: string;
 }
 
 export interface Page {

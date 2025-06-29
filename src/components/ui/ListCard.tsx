@@ -1,72 +1,77 @@
 import { handleDate } from '@/hooks/HandleDate';
 import { Post } from '@/types/Post';
 import { CircleUserRound, Dot, MessageSquare, ThumbsUp } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+import Tags from './Tags';
+import { Devider } from './devider';
 
 interface ListCardProps {
   post: Post;
   i?: number;
   isSidebar: boolean;
+  isPicture: boolean;
 }
 
-const ListCard: React.FC<ListCardProps> = ({ post, i, isSidebar }) => {
+const ListCard: React.FC<ListCardProps> = ({
+  post,
+  i,
+  isSidebar,
+  isPicture = false,
+}) => {
   return (
-    <div
+    <Link
+      href={`/posts/${post.id}`}
       key={i}
-      className={`flex flex-col gap-16 ${
-        isSidebar ? 'w-full' : 'lg:w-[807px]'
-      }`}
+      className={`flex gap-24 ${isSidebar ? 'w-full' : 'lg:w-[807px]'}`}
     >
-      {/* title, tags & content */}
-      <div className='flex flex-col gap-8 w-full lg:gap-12'>
-        <p className='text-[18px] font-bold text-neutral-900'>{post.title}</p>
+      <Image
+        src={post.imageUrl}
+        alt='image'
+        width={340}
+        height={258}
+        className={`w-[340px] h-[258px] hidden ${
+          isPicture ? 'lg:block' : 'hidden'
+        }`}
+      />
+      <div className={`flex flex-col gap-16 `}>
+        {/* title, tags & content */}
+        <div className='flex flex-col gap-8 w-full lg:gap-12'>
+          <p className='text-[18px] font-bold text-neutral-900'>{post.title}</p>
 
-        {/* tags */}
-        <div
-          className={` gap-4 lg:gap-8 flex-auto ${
-            isSidebar ? 'flex' : 'hidden'
-          }`}
-        >
-          {post.tags.map((tag, i) => (
-            <div
-              className='flex max-w-90 h-38 border-1 border-neutral-300 rounded-[8px] items-center justify-center  '
-              key={i}
-            >
-              <div className='px-8 py-2 text-xs text-neutral-900 text-center'>
-                {tag}
-              </div>
-            </div>
-          ))}
+          {/* tags */}
+          <Tags post={post} isSidebar={isSidebar} />
+
+          {/* context */}
+          <p className='text-xs text-neutral-900 text-ellipsis line-clamp-2'>
+            {post.content}
+          </p>
         </div>
-        {/* context */}
-        <p className='text-xs text-neutral-900 text-ellipsis line-clamp-2'>
-          {post.content}
-        </p>
-      </div>
-      {/* author name */}
-      <div className='flex items-center '>
-        <div className='flex gap-8 lg:gap-12 items-center'>
-          <CircleUserRound className='size-30' />
-          <div> {post.author.name}</div>
+        {/* author name */}
+        <div className='flex items-center '>
+          <div className='flex gap-8 lg:gap-12 items-center'>
+            <CircleUserRound className='size-30' />
+            <div> {post.author.name}</div>
+          </div>
+          <Dot />
+          <div className='text-xs text-neutral-600'>
+            {handleDate(post.createdAt)}
+          </div>
         </div>
-        <Dot />
-        <div className='text-xs text-neutral-600'>
-          {handleDate(post.createdAt)}
+        {/* interactive  */}
+        <div className=' flex gap-12'>
+          <div className='flex gap-6'>
+            <ThumbsUp />
+            <div>{post.likes}</div>
+          </div>
+          <div className='flex gap-6'>
+            <MessageSquare />
+            <div>{post.comments}</div>
+          </div>
         </div>
       </div>
-      {/* interactive  */}
-      <div className=' flex gap-12'>
-        <div className='flex gap-6'>
-          <ThumbsUp />
-          <div>{post.likes}</div>
-        </div>
-        <div className='flex gap-6'>
-          <MessageSquare />
-          <div>{post.comments}</div>
-        </div>
-      </div>
-      <div className='border-1 border-neutral-300 rounded-full' />
-    </div>
+    </Link>
   );
 };
 

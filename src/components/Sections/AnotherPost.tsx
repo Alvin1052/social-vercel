@@ -27,15 +27,7 @@ const AnotherPost = () => {
         <p className='text-[24px] font-bold text-neutral-900'>Another Posts</p>
       </div>
       <div className='flex gap-24'>
-        <Image
-          src='/logo-symbol.svg'
-          alt='belajar'
-          width='340'
-          height='258'
-          className='w-340 h-258'
-        />
-
-        <ListCard post={post} />
+        <ListCard post={post} isSidebar={false} isPicture={true} />
       </div>
     </div>
   );

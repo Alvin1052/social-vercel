@@ -4,6 +4,7 @@ import AnotherPost from '@/components/Sections/AnotherPost';
 import CommentInput from '@/components/Sections/CommentInput';
 import Comments from '@/components/Sections/Comments';
 import { Devider } from '@/components/ui/devider';
+import Tags from '@/components/ui/Tags';
 import { API } from '@/services/axios/api';
 import { Post } from '@/types/Post';
 import Image from 'next/image';
@@ -29,7 +30,7 @@ const DetailView = ({ id }: { id: string }) => {
     <div className='mt-128 mx-320 my-303'>
       <div className='flex flex-col gap-16'>
         <div className='text-[36px] font-bold'>{post.title}</div>
-        <div> Tags</div>
+        <Tags post={post} isSidebar={false} />
         <div>profile</div>
         <Devider />
         <div> interactive</div>
