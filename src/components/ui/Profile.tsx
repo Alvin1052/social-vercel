@@ -1,7 +1,7 @@
 import { handleDate } from '@/hooks/HandleDate';
 import { API } from '@/services/axios/api';
 import { Post } from '@/types/Post';
-import { CircleUserIcon, Dot, UserCircle2, UserCircleIcon } from 'lucide-react';
+import { CircleUserIcon, Dot } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 

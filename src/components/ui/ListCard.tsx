@@ -5,7 +5,7 @@ import React from 'react';
 
 import Profile from './Profile';
 import Tags from './Tags';
-import Interactive from './Interactive';
+import Interactive from './interactive';
 
 interface ListCardProps {
   post: Post;
